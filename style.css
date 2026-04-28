@@ -1,0 +1,243 @@
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+        }
+
+        :root {
+            --bg-color: #081b29;
+            --main-color: #00abf0;
+            --text-color: #333;
+            --white-color: #fff;
+            --border: .125rem solid #00abf0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 75rem;
+            height: 96vh;
+            padding: 2.5rem;
+            background: var(--main-color);
+            display: flex;
+            perspective: 250rem;
+            border-radius: .6rem;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            background: var(--white-color);
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+        }
+
+        .book::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 20%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.01) 80%, rgba(0, 0, 0, 0) 100%);
+            z-index: 100;
+            pointer-events: none;
+            transform: translateX(-50%);
+        }
+
+        .page-left-static {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            background: var(--white-color);
+            padding: 2rem;
+            z-index: 1;
+            box-shadow: inset -12px 0 15px -10px rgba(0,0,0,0.05);
+        }
+
+        .book-page {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--white-color);
+            transform-origin: left;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 1;
+        }
+
+        .book-page.turn { transform: rotateY(-180deg); }
+
+        .page-front, .page-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            background: var(--white-color);
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-front { box-shadow: inset 12px 0 15px -10px rgba(0,0,0,0.05); }
+        .page-back {
+             transform: rotateY(180deg);
+              border-right: 1px solid #ddd;
+               box-shadow: inset -12px 0 15px -10px rgba(0,0,0,0.05); }
+
+        .profile-page { display: flex; flex-direction: column;
+             align-items: center; 
+            text-align: center;
+             justify-content: center;
+             height: 100%; }
+        .profile-page img { width: 160px; height: 160px; border-radius: 50%;
+             border: 4px solid var(--main-color);
+             margin-bottom: 1rem;
+             object-fit: cover; }
+        .profile-page h1 { font-size: 2.2rem;
+             color: var(--text-color); }
+        .profile-page h3 { color: var(--main-color);
+             margin-bottom: 0.5rem; }
+
+        .profile-page p { font-size: 0.95rem;
+             color: #555;
+             text-align: justify;
+             margin: 0.5rem 0; }
+        
+        .social-media a { display: inline-flex;
+             width: 2.2rem;
+             height: 2.2rem; border: var(--border);
+             border-radius: 50%; 
+            color: var(--main-color);
+             align-items: center; justify-content: center; 
+             margin: 0 .2rem;
+              transition: .5s; }
+
+        .social-media a:hover { background: var(--main-color);
+             color: #fff; }
+
+        .btn-box { margin-top: 1rem; }
+        .btn { display: inline-flex;
+             padding: 0.6rem 1.2rem; 
+            background: var(--main-color); 
+            border: var(--border); 
+            border-radius: .4rem; 
+            color: #fff;
+             font-weight: 600;
+             margin: 0 .3rem; 
+             font-size: 0.9rem;
+            cursor: pointer; }
+        .btn.btn-line { background: transparent; 
+            color: var(--main-color); }
+
+        /* Floating Home Button (New) */
+        .home-btn {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+            background: transparent;
+            border: var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--main-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .home-btn:hover {
+            background: var(--main-color);
+            color: var(--white-color);
+        }
+
+        .title { font-size: 2rem; 
+            text-align: center;
+             margin-bottom: 1.2rem; }
+        .workedu-box { border-left: 5px solid var(--main-color);
+             padding-left: 1.5rem; 
+            margin-left: .85rem; }
+        .workedu-content { position: relative; 
+            margin-bottom: 1rem; }
+        .workedu-content::before { content: "";
+             position: absolute; 
+            left: -2.25rem; top: 0rem;
+             width: 1.2rem; 
+            height: 1.2rem;
+             background: var(--main-color); border-radius: 50%; }
+        .year { color: var(--main-color); 
+            font-weight: 600; 
+            font-size: 1rem; }
+        .workedu-content h3 { font-size: 1.2rem; }
+        .workedu-content p { font-size: 1rem; 
+            color: #666; }
+
+        /* Skills Layout */
+        .skills-category { margin-bottom: 12px; }
+        .skills-category h3 { font-size: 0.9rem;
+             margin-bottom: 5px; 
+            color: var(--main-color); }
+        .skills-grid { display: flex;
+             flex-wrap: wrap;
+             gap: 8px; }
+        .skills-item { width: 23%;
+             height: 60px;
+             border: var(--border);
+             border-radius: 5px;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center; }
+        .skills-item i { font-size: 24px; }
+        .skills-item p { font-size: 0.6rem;
+             font-weight: 600;
+             margin-top: 2px; }
+
+        .number-page { position: absolute;
+             bottom: 1.2rem;
+             left: 50%;
+             transform: translateX(-50%);
+             font-weight: 600; }
+        .nextprev-btn { position: absolute;
+             bottom: .9rem;
+             right: 1.5rem; 
+            font-size: 1.8rem;
+             color: #555;
+             cursor: pointer; }
+        .nextprev-btn.back { left: 1.3rem;
+             right: auto; }
+
+        .project-img { width: 100%; height: 180px; border-radius: .6rem; border: var(--border); margin-bottom: 1rem; overflow: hidden; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        .contact-form { display: flex; flex-direction: column; gap: 0.8rem; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 0.7rem; border: var(--border); border-radius: .4rem; background: transparent; outline: none; color: var(--text-color); }
+        .contact-form textarea { height: 100px; resize: none; }
+
+        #page-1 { z-index: 4; }
+        #page-2 { z-index: 3; }
+        #page-3 { z-index: 2; }
+        #page-4 { z-index: 1; }
+    
